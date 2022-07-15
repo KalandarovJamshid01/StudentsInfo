@@ -3,6 +3,6 @@ const db = require("./config/db");
 
 const app = require("./middleware/app");
 
-app.listen(8000, () => {
-  console.log("Port sizni tinglamoqda !");
+app.listen(process.env.PORT, () => {
+  console.log(`Listening on port ${process.env.PORT}`);
 });
