@@ -1,5 +1,5 @@
 const Country = require("../model/countryModel");
-
+const catchErrorAsync = require("./../utility/catchError");
 const {
   getAll,
   getOne,
@@ -8,9 +8,9 @@ const {
   deleteData,
 } = require("./handlerController");
 
-const getAllCountry = (req, res, next) => {
+const getAllCountry = catchErrorAsync((req, res, next) => {
   getAll(req, res, Country);
-};
+});
 const getOneCountry = (req, res, next) => {
   getOne(req, res, Country);
 };
