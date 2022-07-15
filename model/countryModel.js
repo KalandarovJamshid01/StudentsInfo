@@ -1,32 +1,15 @@
 const mongoose = require("mongoose");
 
-const regionSchema = new mongoose.Schema({
+const countrySchema = new mongoose.Schema({
   name: {
     type: String,
     required: true,
   },
-  districtId: [
-    {
-      type: mongoose.Schema.ObjectId,
-      ref: "districts",
-    },
-  ],
-});
-const countrySchema = new mongoose.Schema(
-  {
-    name: {
-      type: String,
-      required: true,
-    },
-    regions: [
-      {
-        type: regionSchema,
-        required: true,
-      },
-    ],
+  regionId: {
+    type: mongoose.Schema.ObjectId,
+    ref: "regions",
   },
-  { toJSON: true, toObject: true }
-);
+});
 
 // countrySchema.virtual("districts", {});
 
