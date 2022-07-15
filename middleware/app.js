@@ -1,4 +1,6 @@
 const express = require("express");
+const AppError = require("./../utility/appError");
+const errorController = require("./../utility/errorController");
 const app = express();
 app.use(express.json());
 
@@ -13,4 +15,10 @@ app.use("/api/v1/region", regionRoute);
 app.use("/api/v1/district", districtRoute);
 app.use("/api/v1/school", schoolRoute);
 app.use("/api/v1/student", studentRoute);
+
+app.all("*", function (req, res, next) {
+  next(new AppError(`this url has not found: ${req.originalUrl}`, 404));
+});
+app.use(errorController);
+
 module.exports = app;
