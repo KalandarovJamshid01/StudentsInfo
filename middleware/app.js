@@ -9,12 +9,14 @@ const regionRoute = require("./../routers/regionRoute");
 const districtRoute = require("./../routers/districtRoute");
 const schoolRoute = require("./../routers/schoolRoute");
 const studentRoute = require("./../routers/studentRoute");
+const userRoute = require("./../routers/userRoute");
 
 app.use("/api/v1/country", countryRoute);
 app.use("/api/v1/region", regionRoute);
 app.use("/api/v1/district", districtRoute);
 app.use("/api/v1/school", schoolRoute);
 app.use("/api/v1/student", studentRoute);
+app.use("/api/v1/user", userRoute);
 
 app.all("*", function (req, res, next) {
   next(new AppError(`this url has not found: ${req.originalUrl}`, 404));

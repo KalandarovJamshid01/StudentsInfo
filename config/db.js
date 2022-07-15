@@ -3,7 +3,7 @@ const mongoose = require("mongoose");
 const mongo = mongoose
   .connect(process.env.DATABASE, {})
   .then(() => {
-    console.log("Serverga ulandi !");
+    console.log("Db connected");
   })
   .catch((err) => {
     console.log(err);
