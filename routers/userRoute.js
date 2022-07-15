@@ -9,4 +9,5 @@ router
   .delete(userController.deleteUser);
 
 router.route("/signUp").post(authController.signUp);
+router.route("/signIn").post(authController.signIn);
 module.exports = router;

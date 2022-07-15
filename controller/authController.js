@@ -42,4 +42,27 @@ const signUp = async (req, res, next) => {
   });
 };
 
-module.exports = { signUp };
+const signIn = async (req, res, next) => {
+  const { email, password } = { ...req.body };
+  if (!email || !password) {
+    return next(new AppError("EMail yoki parol xato"));
+  }
+  const user = await User.findOne({ email });
+  if (!user) {
+    return next(new AppError("Bunday user mavjud emas"));
+  }
+  const tekshirHash = async (oddiyPassword, hashPassword) => {
+    const tekshir = await bcrypt.compare(oddiyPassword, hashPassword);
+    return tekshir;
+  };
+  if (!(await tekshirHash(password, user.password))) {
+    return next(new AppError("Sizning parol yoki loginingiz xato", 401));
+  }
+  const token = createToken(user._id);
+  saveTokenCookie(res, token);
+  res.status(200).json({
+    status: "Success",
+    token: token,
+  });
+};
+module.exports = { signUp, signIn };
