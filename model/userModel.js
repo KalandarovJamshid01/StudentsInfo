@@ -40,6 +40,10 @@ const userSchema = new mongoose.Schema({
     type: Boolean,
     default: true,
   },
+  passwordChangedDate: {
+    type: Date,
+    default: null,
+  },
 });
 
 const User = mongoose.model("users", userSchema);
