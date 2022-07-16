@@ -8,11 +8,11 @@ const {
   deleteData,
 } = require("./handlerController");
 
-const getAllStudent = (req, res, next) => getAll(req, res, Student);
-const getOneStudent = (req, res, next) => getOne(req, res, Student);
-const addStudent = (req, res, next) => add(req, res, Student);
-const updateStudent = (req, res, next) => update(req, res, Student);
-const deleteStudent = (req, res, next) => deleteData(req, res, Student);
+const getAllStudent = (req, res, next) => getAll(req, res, next, Student);
+const getOneStudent = (req, res, next) => getOne(req, res, next, Student);
+const addStudent = (req, res, next) => add(req, res, next, Student);
+const updateStudent = (req, res, next) => update(req, res, next, Student);
+const deleteStudent = (req, res, next) => deleteData(req, res, next, Student);
 
 module.exports = {
   getAllStudent,

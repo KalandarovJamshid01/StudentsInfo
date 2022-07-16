@@ -9,19 +9,19 @@ const {
 } = require("./handlerController");
 
 const getAllRegion = (req, res, next) => {
-  getAll(req, res, Region);
+  getAll(req, res, next, Region);
 };
 const getOneRegion = (req, res, next) => {
-  getOne(req, res, Region);
+  getOne(req, res, next, Region);
 };
 const addRegion = (req, res, next) => {
-  add(req, res, Region);
+  add(req, res, next, Region);
 };
 const updateRegion = (req, res, next) => {
-  update(req, res, Region);
+  update(req, res, next, Region);
 };
 const deleteRegion = (req, res, next) => {
-  deleteData(req, res, Region);
+  deleteData(req, res, next, Region);
 };
 
 module.exports = {

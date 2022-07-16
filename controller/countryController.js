@@ -8,20 +8,20 @@ const {
   deleteData,
 } = require("./handlerController");
 
-const getAllCountry = catchErrorAsync((req, res, next) => {
-  getAll(req, res, Country);
-});
+const getAllCountry = (req, res, next) => {
+  getAll(req, res, next, Country);
+};
 const getOneCountry = (req, res, next) => {
-  getOne(req, res, Country);
+  getOne(req, res, next, Country);
 };
 const addCountry = (req, res, next) => {
-  add(req, res, Country);
+  add(req, res, next, Country);
 };
 const updateCountry = (req, res, next) => {
-  update(req, res, Country);
+  update(req, res, next, Country);
 };
 const deleteCountry = (req, res, next) => {
-  deleteData(req, res, Country);
+  deleteData(req, res, next, Country);
 };
 
 module.exports = {

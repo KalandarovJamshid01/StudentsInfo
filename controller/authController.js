@@ -31,7 +31,7 @@ const signUp = async (req, res, next) => {
     password: req.body.password,
     passwordConfirm: req.body.passwordConfirm,
     photo: req.body.photo,
-    passwordChangedDate: req.body.passwordChangedDate,
+    passwordChangedDate: Date.now(),
   });
   const token = createToken(newUser._id);
   saveTokenCookie(res, token);
@@ -70,7 +70,7 @@ const protect = async (req, res, next) => {
   let token;
   if (
     req.headers.authorization &&
-    req.headers.authorization.startWith("Bearer")
+    req.headers.authorization.startsWith("Bearer")
   ) {
     token = req.headers.authorization.split(" ")[1];
   }
@@ -86,7 +86,7 @@ const protect = async (req, res, next) => {
     return next(new AppError("Bunday user mavjud emas", 401));
   }
 
-  if (user.passwordChangedDate.getDate) {
+  if (user.passwordChangedDate.getDate()) {
     if (user.passwordChangedDate.getTime() / 1000 > tokenca.iat) {
       return next(new AppError("Sizning tokeningiz yaroqsiz", 401));
     }
