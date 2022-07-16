@@ -8,11 +8,11 @@ const {
   deleteData,
 } = require("./handlerController");
 
-const getAllGroup = (req, res, next) => getAll(req, res, next, Group);
-const getOneGroup = (req, res, next) => getOne(req, res, next, Group);
-const addGroup = (req, res, next) => add(req, res, next, Group);
-const updateGroup = (req, res, next) => update(req, res, next, Group);
-const deleteGroup = (req, res, next) => update(req, res, next, Group);
+const getAllGroup = (req, res, next) => getAll(req, res, Group);
+const getOneGroup = (req, res, next) => getOne(req, res, Group);
+const addGroup = (req, res, next) => add(req, res, Group);
+const updateGroup = (req, res, next) => update(req, res, Group);
+const deleteGroup = (req, res, next) => update(req, res, Group);
 
 module.exports = {
   getAllGroup,

@@ -1,7 +1,7 @@
 const AppError = require("../utility/appError");
 const catchErrorAsync = require("./../utility/catchError");
 
-const getAll = catchErrorAsync(async (req, res, next, Model, options) => {
+const getAll = catchErrorAsync(async (req, res, Model) => {
   const data = await Model.find();
   res.status(200).json({
     results: data.length,

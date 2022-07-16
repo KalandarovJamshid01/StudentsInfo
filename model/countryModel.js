@@ -5,10 +5,12 @@ const countrySchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  regionId: {
-    type: mongoose.Schema.ObjectId,
-    ref: "regions",
-  },
+  regionId: [
+    {
+      type: mongoose.Schema.ObjectId,
+      ref: "regions",
+    },
+  ],
 });
 
 // countrySchema.virtual("districts", {});
