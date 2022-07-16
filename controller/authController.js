@@ -65,4 +65,33 @@ const signIn = async (req, res, next) => {
     token: token,
   });
 };
-module.exports = { signUp, signIn };
+
+const protect = async (req, res, next) => {
+  let token;
+  if (
+    req.headers.authorization &&
+    req.headers.authorization.startWith("Bearer")
+  ) {
+    token = req.headers.authorization.split(" ")[1];
+  }
+  if (!token) {
+    return next(new AppError("Siz tizimga kirishingiz kerak", 401));
+  }
+
+  const tokenca = jwt.verify(token, process.env.JWT_SECRET_CODE);
+
+  const user = await User.findById(tokenca.id);
+
+  if (!user) {
+    return next(new AppError("Bunday user mavjud emas", 401));
+  }
+
+  if (user.passwordChangedDate.getDate) {
+    if (user.passwordChangedDate.getTime() / 1000 > tokenca.iat) {
+      return next(new AppError("Sizning tokeningiz yaroqsiz", 401));
+    }
+  }
+  req.user = user;
+  next();
+};
+module.exports = { signUp, signIn, protect };

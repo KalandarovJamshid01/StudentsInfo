@@ -1,15 +1,16 @@
 const express = require("express");
 const countryController = require("./../controller/countryController");
+const authController = require("./../controller/authController");
 const router = express.Router();
 
 router
   .route("/")
-  .get(countryController.getAllCountry)
-  .post(countryController.addCountry);
+  .get(authController.protect, countryController.getAllCountry)
+  .post(authController.protect, countryController.addCountry);
 
 router
   .route("/:id")
-  .get(countryController.getOneCountry)
-  .post(countryController.addCountry)
-  .patch(countryController.updateCountry);
+  .get(authController.protect, countryController.getOneCountry)
+  .post(authController.protect, countryController.addCountry)
+  .patch(authController.protect, countryController.updateCountry);
 module.exports = router;

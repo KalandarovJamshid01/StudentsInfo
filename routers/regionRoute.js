@@ -1,16 +1,17 @@
 const express = require("express");
+const authController = require("./../controller/authController");
 const regionController = require("./../controller/regionController");
 const router = express.Router();
 
 router
   .route("/")
-  .get(regionController.getAllRegion)
-  .post(regionController.addRegion);
+  .get(authController.protect, regionController.getAllRegion)
+  .post(authController.protect, regionController.addRegion);
 
 router
   .route("/:id")
-  .get(regionController.getOneRegion)
-  .patch(regionController.updateRegion)
-  .delete(regionController.deleteRegion);
+  .get(authController.protect, regionController.getOneRegion)
+  .patch(authController.protect, regionController.updateRegion)
+  .delete(authController.protect, regionController.deleteRegion);
 
 module.exports = router;
