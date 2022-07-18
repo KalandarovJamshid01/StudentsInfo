@@ -1,12 +1,21 @@
 const AppError = require("../utility/appError");
 const catchErrorAsync = require("./../utility/catchError");
 
-const getAll = catchErrorAsync(async (req, res, Model) => {
-  const data = await Model.find();
+const getAll = catchErrorAsync(async (req, res, Model, options) => {
+  let datas;
+  if (options) {
+    datas = await Model.find().populate({
+      path: options.path,
+      select: options.select,
+    });
+  } else {
+    datas = await Model.find();
+  }
+
   res.status(200).json({
-    results: data.length,
-    status: "success",
-    data: data,
+    status: "Success",
+    results: datas.length,
+    data: datas,
   });
 });
 

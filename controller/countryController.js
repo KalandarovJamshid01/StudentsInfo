@@ -9,7 +9,11 @@ const {
 } = require("./handlerController");
 
 const getAllCountry = (req, res, next) => {
-  getAll(req, res, Country);
+  const options = {
+    path: "regions",
+    select: "name -_id -countryId",
+  };
+  getAll(req, res, Country, options);
 };
 const getOneCountry = (req, res, next) => {
   getOne(req, res, Country);

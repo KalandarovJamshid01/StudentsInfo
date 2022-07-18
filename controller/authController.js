@@ -48,6 +48,8 @@ const signIn = async (req, res, next) => {
     return next(new AppError("EMail yoki parol xato"));
   }
   const user = await User.findOne({ email });
+  user.passwordChangedDate = Date.now();
+  user.save();
   if (!user) {
     return next(new AppError("Bunday user mavjud emas"));
   }
@@ -85,8 +87,7 @@ const protect = async (req, res, next) => {
   if (!user) {
     return next(new AppError("Bunday user mavjud emas", 401));
   }
-
-  if (user.passwordChangedDate.getDate()) {
+  if (user.passwordChangedDate.getDate) {
     if (user.passwordChangedDate.getTime() / 1000 > tokenca.iat) {
       return next(new AppError("Sizning tokeningiz yaroqsiz", 401));
     }
