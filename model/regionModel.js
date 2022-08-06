@@ -6,9 +6,9 @@ const regionSchema = new mongoose.Schema({
     unique: true,
     require: true,
   },
-  districtId: {
+  countryId: {
     type: mongoose.Schema.ObjectId,
-    ref: "districts",
+    ref: "countries",
   },
 });
 

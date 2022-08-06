@@ -8,6 +8,6 @@ const groupSchema = new mongoose.Schema({
   },
 });
 
-const Group = mogoose.model("groups", groupSchema);
+const Group = mongoose.model("groups", groupSchema);
 
 module.exports = Group;

@@ -11,7 +11,7 @@ const {
 const getAllCountry = (req, res, next) => {
   const options = {
     path: "regions",
-    select: "name -_id -countryId",
+    select: "name",
   };
   getAll(req, res, Country, options);
 };

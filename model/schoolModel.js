@@ -5,7 +5,7 @@ const schoolSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  districId: {
+  districtId: {
     type: mongoose.Schema.ObjectId,
     ref: "districts",
   },

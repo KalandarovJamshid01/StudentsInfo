@@ -3,6 +3,7 @@ const catchErrorAsync = require("./../utility/catchError");
 
 const getAll = catchErrorAsync(async (req, res, Model, options) => {
   let datas;
+  console.log(options);
   if (options) {
     datas = await Model.find().populate({
       path: options.path,
@@ -29,7 +30,7 @@ const getOne = catchErrorAsync(async (req, res, Model) => {
 });
 
 const add = catchErrorAsync(async (req, res, Model) => {
-  const data = Model.create(req.body);
+  const data = await Model.create(req.body);
   res.status(201).json({
     status: "succes",
     data: data,

@@ -11,6 +11,6 @@ router
 router
   .route("/:id")
   .get(authController.protect, countryController.getOneCountry)
-  .post(authController.protect, countryController.addCountry)
+  .delete(authController.protect, countryController.deleteCountry)
   .patch(authController.protect, countryController.updateCountry);
 module.exports = router;

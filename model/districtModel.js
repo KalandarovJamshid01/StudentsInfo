@@ -5,6 +5,10 @@ const districtSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+  regionId: {
+    type: mongoose.Schema.ObjectId,
+    ref: "districts",
+  },
 });
 
 const District = mongoose.model("districts", districtSchema);
